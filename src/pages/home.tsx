@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import { getSession } from "../lib/user";
-import { NavigateFunction, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 function Home() {
   const navigate = useNavigate();
 
-  const checkSession = (navigate: NavigateFunction) => {
-    const session = getSession();
+  const checkSession = async () => {
+    const session = await getSession();
 
     if (session) return;
     else navigate('/sign-in')
   };
 
   useEffect(() => {
-    checkSession(navigate);
-  }, [navigate]);
+    checkSession();
+  }, []);
 
   return (
     <section>
